@@ -1,2 +1,0 @@
-class FacesController < ApplicationController
-end
