@@ -9,14 +9,14 @@ class HomeController < ApplicationController
       @friends = Array.new
       current_user.befriendee_friendships.each do |friendship|
         if (friendship.confirmed == nil)
-          @requests << User.find(friendship.befriendor_id)
+          @requests << friendship
         else
           @friends << User.find(friendship.befriendor_id)
         end
       end
       current_user.befriendor_friendships.each do |friendship|
         if (friendship.confirmed == nil)
-          @pending << User.find(friendship.befriendee_id)
+          @pending << friendship
         else
           @friends << User.find(friendship.befriendee_id)
         end

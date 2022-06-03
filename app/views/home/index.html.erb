@@ -1,31 +1,52 @@
-<h1>Welcome to FacePlace<% if user_signed_in? %>, <%= current_user.first_name %> <%= current_user.last_name %><% end %>!</h1><br>
 <% if user_signed_in? %>
-  Here is a list of your Friend Requests!
-  <ul><% @requests.each do |requestor| %>
-    <li><%= link_to "#{requestor.first_name} #{requestor.last_name}", user_show_path(requestor) %></li>
-  <% end %>
-  </ul><br>
-  Here is a list of your Pending Requests!
-  <ul><% @pending.each do |requestee| %>
-    <li><%= link_to "#{requestee.first_name} #{requestee.last_name}", user_show_path(requestee) %></li>
-  <% end %>
-  </ul><br>
-  Here is a list of your friends!<br>
-  <ul><% @friends.each do |friend| %>
-    <li><%= link_to "#{friend.first_name} #{friend.last_name}", user_show_path(friend) %></li><br>
-  <% end %></ul>
-  <br>
-  Here is a list of the rest of the users!<br>
-  <ul><% @users.each do |user| %>
-    <li><%= link_to "#{user.first_name} #{user.last_name}", user_show_path(user) %>
-    <%= render "friendships/new", user: user %>
-    <%= form_with url: friendships_path(@friendship) do |f| %>
-          <%#= f.hidden_field :befriendor_id, :value => current_user.id %>
-          <%#= f.hidden_field :befriendee_id, :value => user.id %>
-          <%#= f.submit "Befriends?" %>
-        <% end %></li>
-    <br>
-  <% end %></ul>
+<div class="main">
+  <div class="friendBar">
+    <% if @requests.length > 0 %>
+      <div class="requests">
+        <div class="friendBarHeader">Friend Requests:</div>
+        <% @requests.each do |requestor| %>
+          <div class="friendBarObject">
+            <%= link_to "#{User.find(requestor.befriendor_id).first_name} #{User.find(requestor.befriendor_id).last_name}", user_show_path(User.find(requestor.befriendor_id)) %>
+            <%= render "friendships/update", friendship: requestor.id %><%= render "friendships/destroy", friendship: requestor.id %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+    <% if @pending.length > 0 %>
+      <div class="pending">
+        <div class="friendBarHeader">Pending Requests:</div>
+        <% @pending.each do |requestee| %>
+          <div class="friendBarObject"> 
+            <%= link_to "#{User.find(requestee.befriendee_id).first_name} #{User.find(requestee.befriendee_id).last_name}", user_show_path(User.find(requestee.befriendee_id)) %>
+            <%= render "friendships/destroy", friendship: requestee.id %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+    <div class="friends">
+      <div class="friendBarHeader">Friends:</div>
+      <% @friends.each do |friend| %>
+        <div class="friendBarObject">
+          <%= link_to "#{friend.first_name} #{friend.last_name}", user_show_path(friend) %>
+        </div>
+      <% end %>
+    </div>
+    <div class="newFriends">
+      <div class="friendBarHeader">New Friends?</div>
+      <% @users.each do |user| %>
+        <div class="friendBarObject">
+          <%= link_to "#{user.first_name} #{user.last_name}", user_show_path(user) %>
+          <%= render "friendships/new", user: user %>
+          <%= form_with url: friendships_path(@friendship) do |f| %>
+            <%#= f.hidden_field :befriendor_id, :value => current_user.id %>
+            <%#= f.hidden_field :befriendee_id, :value => user.id %>
+            <%#= f.submit "Befriends?" %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
 <% else %>
   You must sign in before you can do anything.<br>
 <% end %>

@@ -13,3 +13,52 @@
  *= require_tree .
  *= require_self
  */
+
+body {
+  margin: 0px;
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  background-color: rgb(124, 230, 124);
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.signIn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.welcome {
+  display: flex;
+  align-items: center;
+}
+
+.main {
+  display: grid;
+  grid-template-columns: 1fr 6fr;
+  grid-template-rows: 100%;
+}
+
+.friendBar {
+  display: grid;
+  background-color: rgb(124, 230, 124);
+  min-height: 100vh;
+}
+
+.friendBarHeader, .friendBarObject {
+  padding-left: 20px;
+}
+
+.friendBarHeader {
+  background-color: rgb(61, 189, 61);
+}
+
+.friendBarObject {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  justify-items: start;
+  align-items: center;
+}
