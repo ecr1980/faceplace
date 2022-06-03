@@ -1,0 +1,31 @@
+<h1>Welcome to FacePlace<% if user_signed_in? %>, <%= current_user.first_name %> <%= current_user.last_name %><% end %>!</h1><br>
+<% if user_signed_in? %>
+  Here is a list of your Friend Requests!
+  <ul><% @requests.each do |requestor| %>
+    <li><%= link_to "#{requestor.first_name} #{requestor.last_name}", user_show_path(requestor) %></li>
+  <% end %>
+  </ul><br>
+  Here is a list of your Pending Requests!
+  <ul><% @pending.each do |requestee| %>
+    <li><%= link_to "#{requestee.first_name} #{requestee.last_name}", user_show_path(requestee) %></li>
+  <% end %>
+  </ul><br>
+  Here is a list of your friends!<br>
+  <ul><% @friends.each do |friend| %>
+    <li><%= link_to "#{friend.first_name} #{friend.last_name}", user_show_path(friend) %></li><br>
+  <% end %></ul>
+  <br>
+  Here is a list of the rest of the users!<br>
+  <ul><% @users.each do |user| %>
+    <li><%= link_to "#{user.first_name} #{user.last_name}", user_show_path(user) %>
+    <%= render "friendships/new", user: user %>
+    <%= form_with url: friendships_path(@friendship) do |f| %>
+          <%#= f.hidden_field :befriendor_id, :value => current_user.id %>
+          <%#= f.hidden_field :befriendee_id, :value => user.id %>
+          <%#= f.submit "Befriends?" %>
+        <% end %></li>
+    <br>
+  <% end %></ul>
+<% else %>
+  You must sign in before you can do anything.<br>
+<% end %>

@@ -1,0 +1,26 @@
+class FriendshipsController < ApplicationController
+  def index
+  end
+
+  def show
+  end
+
+  def new
+    @friendship = Friendship.new
+  end
+
+  def create
+    @friendship = Friendship.new(friendship_params) 
+    #Friendship.new(befriendor_id: params[:befriendor_id], befriendee_id: params[:befriendee_id])
+    if @friendship.save
+      redirect_to root_path
+    end
+  end
+
+  private
+
+  def friendship_params
+    params.require(:friendship).permit(:befriendor_id, :befriendee_id)
+  end
+
+end
