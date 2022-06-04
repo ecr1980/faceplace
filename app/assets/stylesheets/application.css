@@ -16,16 +16,29 @@
 
 body {
   margin: 0px;
+  background-color: rgb(37, 37, 37);
+  color: white;
 }
-.navbar {
+
+body a:link {
+  text-decoration: none;
+  color: white;
+}
+
+body a:visited {
+  color: white;
+}
+
+
+
+.nav-bar {
   display: flex;
   justify-content: space-between;
-  background-color: rgb(124, 230, 124);
   padding-left: 20px;
   padding-right: 20px;
 }
 
-.signIn {
+.sign-in {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -42,23 +55,36 @@ body {
   grid-template-rows: 100%;
 }
 
-.friendBar {
+.friend-bar {
   display: grid;
-  background-color: rgb(124, 230, 124);
   min-height: 100vh;
 }
 
-.friendBarHeader, .friendBarObject {
+.friend-bar-header, .friend-bar-object {
   padding-left: 20px;
 }
 
-.friendBarHeader {
-  background-color: rgb(61, 189, 61);
+.friend-bar-header {
+  background-color: rgb(65, 66, 65);
 }
 
-.friendBarObject {
+.friend-bar-object {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr;
   justify-items: start;
   align-items: center;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr;
+  grid-template-rows: min-content;
+}
+
+.new-post {
+  border: 1px;
+  border-style: solid;
+  border-color: black;
+  border-radius: 10px;
+  grid-column-start: 2;
 }

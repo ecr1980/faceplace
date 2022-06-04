@@ -1,11 +1,11 @@
 <% if user_signed_in? %>
 <div class="main">
-  <div class="friendBar">
+  <div class="friend-bar">
     <% if @requests.length > 0 %>
       <div class="requests">
-        <div class="friendBarHeader">Friend Requests:</div>
+        <div class="friend-bar-header">Friend Requests:</div>
         <% @requests.each do |requestor| %>
-          <div class="friendBarObject">
+          <div class="friend-bar-object">
             <%= link_to "#{User.find(requestor.befriendor_id).first_name} #{User.find(requestor.befriendor_id).last_name}", user_show_path(User.find(requestor.befriendor_id)) %>
             <%= render "friendships/update", friendship: requestor.id %><%= render "friendships/destroy", friendship: requestor.id %>
           </div>
@@ -14,9 +14,9 @@
     <% end %>
     <% if @pending.length > 0 %>
       <div class="pending">
-        <div class="friendBarHeader">Pending Requests:</div>
+        <div class="friend-bar-header">Pending Requests:</div>
         <% @pending.each do |requestee| %>
-          <div class="friendBarObject"> 
+          <div class="friend-bar-object"> 
             <%= link_to "#{User.find(requestee.befriendee_id).first_name} #{User.find(requestee.befriendee_id).last_name}", user_show_path(User.find(requestee.befriendee_id)) %>
             <%= render "friendships/destroy", friendship: requestee.id %>
           </div>
@@ -24,26 +24,26 @@
       </div>
     <% end %>
     <div class="friends">
-      <div class="friendBarHeader">Friends:</div>
+      <div class="friend-bar-header">Friends:</div>
       <% @friends.each do |friend| %>
-        <div class="friendBarObject">
+        <div class="friend-bar-object">
           <%= link_to "#{friend.first_name} #{friend.last_name}", user_show_path(friend) %>
         </div>
       <% end %>
     </div>
-    <div class="newFriends">
-      <div class="friendBarHeader">New Friends?</div>
+    <div class="new-friends">
+      <div class="friend-bar-header">New Friends?</div>
       <% @users.each do |user| %>
-        <div class="friendBarObject">
+        <div class="friend-bar-object">
           <%= link_to "#{user.first_name} #{user.last_name}", user_show_path(user) %>
           <%= render "friendships/new", user: user %>
-          <%= form_with url: friendships_path(@friendship) do |f| %>
-            <%#= f.hidden_field :befriendor_id, :value => current_user.id %>
-            <%#= f.hidden_field :befriendee_id, :value => user.id %>
-            <%#= f.submit "Befriends?" %>
-          <% end %>
         </div>
       <% end %>
+    </div>
+  </div>
+  <div class="content">
+    <div class="new-post">
+      <%= render "sayings/new" %>
     </div>
   </div>
 </div>

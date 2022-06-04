@@ -5,8 +5,8 @@ Rails.application.routes.draw do
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   get "home/show/:id" => "home#show", as: "user_show"
-  resources :users, :friendships
+  resources :users, :friendships, :sayings
   # Defines the root path route ("/")
   root "home#index"
-  #post "friendships" => "friendships#create", as: "create_friendship"
+  
 end
