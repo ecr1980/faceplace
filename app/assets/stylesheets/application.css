@@ -78,10 +78,18 @@ body a:visited {
 .content {
   display: grid;
   grid-template-columns: 1fr 4fr 1fr;
-  grid-template-rows: min-content;
+  grid-template-rows: 200px;
 }
 
 .new-post {
+  border: 1px;
+  border-style: solid;
+  border-color: black;
+  border-radius: 10px;
+  grid-column-start: 2;
+}
+
+.sayings {
   border: 1px;
   border-style: solid;
   border-color: black;

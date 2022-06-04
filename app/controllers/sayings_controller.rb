@@ -10,7 +10,10 @@ class SayingsController < ApplicationController
 
   def create
     @saying = Saying.new(saying_params)
+    @saying.user_id = current_user.id
     if @saying.save
+      redirect_to root_path
+    else
       redirect_to root_path
     end
   end

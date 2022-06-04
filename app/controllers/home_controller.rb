@@ -2,7 +2,11 @@ class HomeController < ApplicationController
   def index
     @friendship = Friendship.new
     @saying = Saying.new
+    @sayings = Saying.all
+    @relavent_sayings = Array.new
+
     
+
     if user_signed_in?
       @users = Array.new
       @requests = Array.new
@@ -22,6 +26,12 @@ class HomeController < ApplicationController
           @pending << friendship
         else
           @friends << User.find(friendship.befriendee_id)
+        end
+      end
+
+      @sayings.each do |saying|
+        if (@friends.include?(saying.user)) || (current_user == saying.user)
+          @relavent_sayings << saying
         end
       end
 

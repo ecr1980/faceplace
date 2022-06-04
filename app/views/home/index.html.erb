@@ -45,6 +45,12 @@
     <div class="new-post">
       <%= render "sayings/new" %>
     </div>
+    <% @relavent_sayings.each do |saying|%>
+      <div class="sayings">
+        <%= saying.user.first_name%> <%= saying.user.last_name%> says:<br>
+        <%= saying.body %>
+      </div>
+    <% end %>
   </div>
 </div>
 <% else %>
