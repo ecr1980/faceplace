@@ -79,6 +79,7 @@ body a:visited {
   display: grid;
   grid-template-columns: 1fr 4fr 1fr;
   grid-template-rows: 200px;
+  gap: 20px;
 }
 
 .new-post {
@@ -95,4 +96,5 @@ body a:visited {
   border-color: black;
   border-radius: 10px;
   grid-column-start: 2;
+  height: 100px;
 }

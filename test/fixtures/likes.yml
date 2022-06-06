@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  saying_id: 1
+  liker_id: 1
+
+two:
+  saying_id: 1
+  liker_id: 1
