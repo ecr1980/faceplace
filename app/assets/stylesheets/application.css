@@ -22,11 +22,11 @@ body {
 
 body a:link {
   text-decoration: none;
-  color: white;
+  color: blueviolet;
 }
 
 body a:visited {
-  color: white;
+  color: blueviolet;
 }
 
 
@@ -57,7 +57,7 @@ body a:visited {
 
 .friend-bar {
   display: grid;
-  min-height: 100vh;
+  height: 100vh;
 }
 
 .friend-bar-header, .friend-bar-object {
@@ -88,6 +88,7 @@ body a:visited {
   border-color: black;
   border-radius: 10px;
   grid-column-start: 2;
+  background-color: black;
 }
 
 .sayings {
@@ -96,5 +97,26 @@ body a:visited {
   border-color: black;
   border-radius: 10px;
   grid-column-start: 2;
-  height: 100px;
+  min-height: 200px;
+  padding: 10px;
+  background-color: black;
+}
+
+.comments {
+  font-size: 0.85rem;
+}
+
+.comment {
+  color: white;
+  padding-left: 10px;
+}
+
+.post-box {
+  display: flex;
+  padding: 10px;
+}
+
+.saying-form {
+  padding-left: 10px;
+  padding-right: 10px;
 }

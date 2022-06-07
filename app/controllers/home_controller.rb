@@ -3,6 +3,8 @@ class HomeController < ApplicationController
     @friendship = Friendship.new
     @saying = Saying.new
     @sayings = Saying.all
+    @like = Like.new
+    @comment = Comment.new
     @relavent_sayings = Array.new
 
     
@@ -48,7 +50,5 @@ class HomeController < ApplicationController
     end
   end
 
-  def show
-    @user = User.find(params[:id])
-  end
+
 end

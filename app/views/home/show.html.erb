@@ -1,3 +1,10 @@
-This is <%= @user.first_name %>'s page.
-<br>
+<% if @user.profile == nil %>
+  <%= @user.first_name %> <%= @user.last_name %> doesn't have a profile yet!
+  <br>
+<% else %>
+  <%= @user.first_name %> <%= @user.last_name %> Picture placeholder text.
+  <br>
+  <%= @user.profile.body %>
+  <br>
+<% end %>
 <%= link_to "home", root_path %>

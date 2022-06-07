@@ -1,0 +1,25 @@
+<div class="sayings">
+  <%= link_to "#{User.find(saying.user.id).first_name} #{User.find(saying.user.id).last_name}", user_show_path(User.find(saying.user.id)) %> says:<br>
+  <%= saying.body %><br><br>
+  <% if current_user.liked_sayings.include?(saying)%>
+    <%= render "likes/destroy", like: Like.where("liker_id = #{current_user.id} AND saying_id = #{saying.id}").first %>
+  <% else %>
+    <%= render "likes/new" , saying: saying %>
+  <% end %>
+  <% if saying.likes.length == 1 %>
+    1 Like
+  <% elsif saying.likes.length > 1 %>
+    <%= saying.likes.length%> likes<br>
+  <% end %>
+  <div class="comments">
+    <div class="new-comment">
+      <%= render "comments/new", saying: saying %>
+    </div>
+    <% saying.comments.each do |comment|%>
+      <div class="comment-author">
+      <%= link_to "#{User.find(comment.commentor.id).first_name} #{User.find(comment.commentor.id).last_name}", user_show_path(User.find(comment.commentor.id)) %> replied:
+        <div class="comment"><%= comment.body %></div>
+      </div>
+    <% end %>
+  </div>
+</div>

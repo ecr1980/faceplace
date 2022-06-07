@@ -43,13 +43,19 @@
   </div>
   <div class="content">
     <div class="new-post">
+      <div class="post-box">
+        <div class="post">
+          Post
+        </div>
+        <div class="picture">
+          Photo
+        </div>
+        <br>
+      </div>
       <%= render "sayings/new" %>
     </div>
     <% @relavent_sayings.each do |saying|%>
-      <div class="sayings">
-        <%= saying.user.first_name%> <%= saying.user.last_name%> says:<br>
-        <%= saying.body %>
-      </div>
+      <%= render "sayings/show", saying: saying %>
     <% end %>
   </div>
 </div>
