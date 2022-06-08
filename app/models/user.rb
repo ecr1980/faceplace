@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :friendships
   has_many :sayings, :foreign_key => :user_id
-  has_many :photos, :foreign_key => :photo_id
+  has_many :photos, :foreign_key => :user_id
   has_many :befriendor_friendships, :foreign_key => :befriendor_id, :class_name => "Friendship"
   has_many :befriendor_friends, :through => :befriendor_friendships, :source => :befriendee
   has_many :befriendee_friendships, :foreign_key => :befriendee_id, :class_name => "Friendship"

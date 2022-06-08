@@ -2,9 +2,22 @@ class ProfilesController < ApplicationController
   
   def show
     @user = User.find(params[:id])
+    @user_posts = Array.new
+
     if (@user == current_user) && (current_user.profile == nil)
       @profile = Profile.new
     end
+
+    @user.sayings.each do |saying|
+      @user_posts << saying
+    end
+
+    @user.photos.each do |photo|
+      @user_posts << photo
+    end
+
+    @user_posts = @user_posts.sort_by(&:created_at).reverse
+
   end
 
   def new

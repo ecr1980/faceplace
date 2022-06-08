@@ -5,7 +5,8 @@ class HomeController < ApplicationController
     @sayings = Saying.all
     @like = Like.new
     @comment = Comment.new
-    @relavent_sayings = Array.new
+    @photo = Photo.new
+    @relavent_posts = Array.new
 
     
 
@@ -31,10 +32,23 @@ class HomeController < ApplicationController
         end
       end
 
-      @sayings.each do |saying|
-        if (@friends.include?(saying.user)) || (current_user == saying.user)
-          @relavent_sayings << saying
+      current_user.friends.each do |friend|
+        friend.sayings.each do |saying|
+          @relavent_posts << saying
         end
+        friend.photos.each do |photo|
+          @relavent_posts << photo
+        end
+      end
+
+
+
+      current_user.sayings.each do |saying|
+        @relavent_posts << saying
+      end
+
+      current_user.photos.each do |photo|
+        @relavent_posts << photo
       end
 
       User.all.each do |u|
@@ -46,7 +60,7 @@ class HomeController < ApplicationController
       end
 
       @users = @users.sort
-
+      @relavent_posts = @relavent_posts.sort_by(&:created_at).reverse
     end
   end
 
