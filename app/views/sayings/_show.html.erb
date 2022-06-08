@@ -2,15 +2,17 @@
   <%= link_to "#{User.find(saying.user.id).first_name} #{User.find(saying.user.id).last_name}", user_show_path(User.find(saying.user.id)) %> says:<br>
   <%= saying.body %><br><br>
   <% if current_user.liked_sayings.include?(saying)%>
-    <%= render "likes/destroy", like: Like.where("liker_id = #{current_user.id} AND saying_id = #{saying.id}").first %>
+    <%= render "likes/destroy", like: Like.where("liker_id = #{current_user.id} AND likable_id = #{saying.id}").first %>
   <% else %>
-    <%= render "likes/new" , saying: saying %>
+    <%= render "likes/new" , saying: saying, post_type: "Saying" %>
   <% end %>
+  <div class="likes">
   <% if saying.likes.length == 1 %>
     1 Like
   <% elsif saying.likes.length > 1 %>
     <%= saying.likes.length%> likes<br>
   <% end %>
+  </div>
   <div class="comments">
     <div class="new-comment">
       <%= render "comments/new", saying: saying %>

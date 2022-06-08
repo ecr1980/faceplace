@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_07_183607) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_07_190000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,6 +20,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_07_183607) do
     t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "commentable_id"
+    t.string "commentable_type"
+    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"
   end
 
   create_table "faces", force: :cascade do |t|
@@ -40,6 +43,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_07_183607) do
     t.integer "liker_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "likable_id"
+    t.string "likable_type"
+    t.index ["likable_type", "likable_id"], name: "index_likes_on_likable_type_and_likable_id"
   end
 
   create_table "photos", force: :cascade do |t|

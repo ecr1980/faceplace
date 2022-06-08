@@ -52,7 +52,12 @@
         </div>
         <br>
       </div>
-      <%= render "sayings/new" %>
+      <div class="new-saying">
+        <%= render "sayings/new" %>
+      </div>
+      <div class="new-photo">
+        <%= render "photos/new" %>
+      </div>
     </div>
     <% @relavent_sayings.each do |saying|%>
       <%= render "sayings/show", saying: saying %>
