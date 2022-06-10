@@ -4,11 +4,11 @@
       <% if @user == current_user%>
         <%= render "profiles/new", id: current_user.id %>
       <% else %>
-        <%= @user.first_name %> <%= @user.last_name %> doesn't have a profile yet!
+        <%= @user.name %> doesn't have a profile yet!
       <% end %>
       <br>
     <% else %>
-      <%= @user.first_name %> <%= @user.last_name %>
+      <%= @user.name %>
       <br>
       <% if @user.profile.profile_pic == nil %>
         No profile picture uploaded yet.
@@ -23,9 +23,14 @@
       <% end %>
       <br>
     <% end %>
+    <br>
+    <br>
+    <% if @user == current_user && @user.profile != nil %>
+      <%= render "profiles/edit", id: current_user.id %>
+    <% end %>
   </div>
   <div class="profile-history">
-    <%= @user.first_name %> <%= @user.last_name%>'s post history:
+    <%= @user.name %>'s post history:
   </div>
     <% @user_posts.each do |post|%>
       <% if post.instance_of? Saying %>

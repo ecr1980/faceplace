@@ -1,5 +1,5 @@
 <div class="sayings">
-  <%= link_to "#{User.find(saying.user.id).first_name} #{User.find(saying.user.id).last_name}", user_show_path(User.find(saying.user.id)) %> says:<br>
+  <%= link_to "#{User.find(saying.user.id).name}", user_show_path(User.find(saying.user.id)) %> says:<br>
   <%= saying.body %><br><br>
   <% if current_user.liked_sayings.include?(saying)%>
     <%= render "likes/destroy", like: Like.where("liker_id = #{current_user.id} AND likable_id = #{saying.id}").first %>
@@ -19,7 +19,7 @@
     </div>
     <% saying.comments.each do |comment|%>
       <div class="comment-author">
-      <%= link_to "#{User.find(comment.commentor.id).first_name} #{User.find(comment.commentor.id).last_name}", user_show_path(User.find(comment.commentor.id)) %> replied:
+      <%= link_to "#{User.find(comment.commentor.id).name}", user_show_path(User.find(comment.commentor.id)) %> replied:
         <div class="comment"><%= comment.body %></div>
       </div>
     <% end %>

@@ -6,6 +6,11 @@ ruby "3.0.3"
 # Devise for handling user sessions
 gem 'devise'
 
+# OmniAuth to log in using Facebook.
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-rails_csrf_protection'
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.3"
 
@@ -44,13 +49,13 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
-
+gem "aws-sdk-s3", require: false
 # Use Sass to process CSS
 # gem "sassc-rails"
-
+gem 'figaro'
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-# gem "image_processing", "~> 1.2"
-
+gem "image_processing", "~> 1.2"
+gem 'rack-cors', '~> 1.1', '>= 1.1.1'
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]

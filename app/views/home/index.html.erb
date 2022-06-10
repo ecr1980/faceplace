@@ -7,7 +7,7 @@
           <div data-friends-target="requests">
           <% @requests.each do |requestor| %>
             <div class="friend-bar-object" >
-              <%= link_to "#{User.find(requestor.befriendor_id).first_name} #{User.find(requestor.befriendor_id).last_name}", user_show_path(User.find(requestor.befriendor_id)) %>
+              <%= link_to "#{User.find(requestor.befriendor_id).name}", user_show_path(User.find(requestor.befriendor_id)) %>
               <%= render "friendships/update", friendship: requestor.id %><%= render "friendships/destroy", friendship: requestor.id %>
             </div>
           <% end %>
@@ -20,7 +20,7 @@
           <div data-friends-target="pending">
           <% @pending.each do |requestee| %>
             <div class="friend-bar-object"> 
-              <%= link_to "#{User.find(requestee.befriendee_id).first_name} #{User.find(requestee.befriendee_id).last_name}", user_show_path(User.find(requestee.befriendee_id)) %>
+              <%= link_to "#{User.find(requestee.befriendee_id).name}", user_show_path(User.find(requestee.befriendee_id)) %>
               <%= render "friendships/destroy", friendship: requestee.id %>
             </div>
           <% end %>
@@ -32,7 +32,7 @@
         <div data-friends-target="friends">
         <% @friends.each do |friend| %>
           <div class="friend-bar-object">
-            <%= link_to "#{friend.first_name} #{friend.last_name}", user_show_path(friend) %>
+            <%= link_to "#{friend.name}", user_show_path(friend) %>
           </div>
         <% end %>
       </div>
@@ -42,7 +42,7 @@
         <div data-friends-target="available">
         <% @users.each do |user| %>
           <div class="friend-bar-object">
-            <%= link_to "#{user.first_name} #{user.last_name}", user_show_path(user) %>
+            <%= link_to "#{user.name}", user_show_path(user) %>
             <%= render "friendships/new", user: user %>
           </div>
         <% end %>

@@ -1,5 +1,5 @@
 <div class="photos">
-  <%= link_to "#{User.find(photo.user.id).first_name} #{User.find(photo.user.id).last_name}", user_show_path(User.find(photo.user.id)) %> posted:<br>
+  <%= link_to "#{User.find(photo.user.id).name}", user_show_path(User.find(photo.user.id)) %> posted:<br>
   <img src="<%= photo.photo %>"><br><br>
   <% if current_user.liked_photos.include?(photo)%>
     <%= render "likes/destroy", like: Like.where("liker_id = #{current_user.id} AND likable_id = #{photo.id}").first %>
@@ -19,7 +19,7 @@
     </div>
     <% photo.comments.each do |comment|%>
       <div class="comment-author">
-      <%= link_to "#{User.find(comment.commentor.id).first_name} #{User.find(comment.commentor.id).last_name}", user_show_path(User.find(comment.commentor.id)) %> replied:
+      <%= link_to "#{User.find(comment.commentor.id).name}", user_show_path(User.find(comment.commentor.id)) %> replied:
         <div class="comment"><%= comment.body %></div>
       </div>
     <% end %>
